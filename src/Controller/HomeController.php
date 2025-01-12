@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Repository\CarouselRepository;
+use App\Repository\HomeRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -10,10 +12,18 @@ class HomeController extends AbstractController
 {
     #[Route('/home', name: 'app_home')]
     #[Route('/', name: 'app_home2')]
-    public function index(): Response
+    public function index(CarouselRepository $carouselRepository, HomeRepository $homeRepository): Response
     {
+        // On récupère la home ayant la props isActive à la valeur true
+        $home = $homeRepository->findOneBy(["isActive"=>true]);
+        // On appelle dd
+        // dd($home);
+        // On récupère les carousels ayant la prop isActive à la valeur true et la prop tag à la valeur "home"
+        $carousels = $carouselRepository->findBy(["isActive"=>true, "tag"=>"home"], ["rankNumber"=>"ASC"]);
+        // dd($carousels);
         return $this->render('home/index.html.twig', [
-            'controller_name' => 'HomeController',
+            'home' => $home,
+            'carousels' => $carousels
         ]);
     }
 }
