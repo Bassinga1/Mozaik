@@ -2,6 +2,9 @@
 {% set dashboardActive = "" %}
 {% set homeActive = "" %}
 {% set carouselActive = "" %}
+{% set categorieActive = "" %}
+{% set serviceActive = "" %}
+{% set imageActive = "" %}
 {# {% set imageActive = "" %} #}
 {# {% set userActive = "" %} #}
 {# {% set contactActive = "" %} #}
@@ -15,6 +18,15 @@
 
 {% elseif "carousel" in app.request.pathinfo %}
 {% set carouselActive = "active" %}
+
+{% elseif "categorie" in app.request.pathinfo %}
+{% set categorieActive = "active" %}
+
+{% elseif "service" in app.request.pathinfo %}
+{% set serviceActive = "active" %}
+
+{% elseif "image" in app.request.pathinfo %}
+{% set imageActive = "active" %}
 
 {% else %}
 {% set dashboardActive = "active" %}

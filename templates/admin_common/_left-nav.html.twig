@@ -26,6 +26,24 @@
                             <i class="align-middle" data-feather="image"></i> <span class="align-middle">Carousel</span>
                         </a>
 					</li>
+
+					<li class="sidebar-item {{ categorieActive }}">
+						<a class="sidebar-link" href="{{ path ('app_admin_categorie_index') }}">
+                            <i class="align-middle" data-feather="grid"></i> <span class="align-middle">Categorie</span>
+                        </a>
+					</li>
+
+					<li class="sidebar-item {{ serviceActive }}">
+						<a class="sidebar-link" href="{{ path ('app_admin_service_index') }}">
+                            <i class="align-middle" data-feather="box"></i> <span class="align-middle">Service</span>
+                        </a>
+					</li>
+
+					<li class="sidebar-item {{ imageActive }}">
+						<a class="sidebar-link" href="{{ path ('app_admin_image_index') }}">
+                            <i class="align-middle" data-feather="image"></i> <span class="align-middle">Image</span>
+                        </a>
+					</li>
 				</ul>
 			</div>
 		</nav>
