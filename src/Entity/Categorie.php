@@ -38,9 +38,6 @@ class Categorie
     #[Vich\UploadableField(mapping: 'categorie', fileNameProperty: 'imageName')]
     private ?File $imageFile = null;
 
-    #[ORM\Column(nullable: true)]
-    private ?\DateTimeImmutable $updatedAt = null;
-
     /**
      * @var Collection<int, Service>
      */
@@ -49,6 +46,9 @@ class Categorie
 
     #[ORM\Column(length: 255)]
     private ?string $slug = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?\DateTimeImmutable $updatedAt = null;
 
     // ====================================================== //
     // ===================== CONSTRUCTEURS ===================== //
@@ -144,18 +144,6 @@ class Categorie
         return $this->imageFile;
     }
 
-    public function getUpdatedAt(): ?\DateTimeImmutable
-    {
-        return $this->updatedAt;
-    }
-
-    public function setUpdatedAt(\DateTimeImmutable $updatedAt): static
-    {
-        $this->updatedAt = $updatedAt;
-
-        return $this;
-    }
-
     /**
      * @return Collection<int, Service>
      */
@@ -194,6 +182,18 @@ class Categorie
     public function setSlug(string $slug): static
     {
         $this->slug = $slug;
+
+        return $this;
+    }
+
+    public function getUpdatedAt(): ?\DateTimeImmutable
+    {
+        return $this->updatedAt;
+    }
+
+    public function setUpdatedAt(?\DateTimeImmutable $updatedAt): static
+    {
+        $this->updatedAt = $updatedAt;
 
         return $this;
     }

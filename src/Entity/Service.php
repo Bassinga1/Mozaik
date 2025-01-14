@@ -51,7 +51,12 @@ class Service
     {
         $this->images = new ArrayCollection();
     }
-
+    // ====================================================== //
+    // =================== MAGIC FUNCTION =================== //
+    // ====================================================== //
+    public function __toString():string{
+        return $this->titre;
+    }
     // ====================================================== //
     // ===================== GETTES/SETTERS ===================== //
     // ====================================================== //
@@ -101,7 +106,7 @@ class Service
         return $this->isActive;
     }
 
-    public function setActive(bool $isActive): static
+    public function setIsActive(bool $isActive): static
     {
         $this->isActive = $isActive;
 

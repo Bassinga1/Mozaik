@@ -32,6 +32,8 @@ final class AdminImageController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($image);
             $entityManager->flush();
+            // Flash méssage
+            $this->addFlash('success', 'image has been created!');
 
             return $this->redirectToRoute('app_admin_image_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -58,6 +60,8 @@ final class AdminImageController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
+            // Flash méssage
+            $this->addFlash('success', 'image has been modified!');
 
             return $this->redirectToRoute('app_admin_image_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -74,6 +78,8 @@ final class AdminImageController extends AbstractController
         if ($this->isCsrfTokenValid('delete'.$image->getId(), $request->getPayload()->getString('_token'))) {
             $entityManager->remove($image);
             $entityManager->flush();
+            // Flash méssage
+            $this->addFlash('success', 'service has been deleted!');
         }
 
         return $this->redirectToRoute('app_admin_image_index', [], Response::HTTP_SEE_OTHER);
