@@ -2,14 +2,17 @@
 
 const addImageFormDeleteLink = (item) => {
     const removeFormButton = document.createElement('button');
-    removeFormButton.innerText = 'Delete this image';
+    removeFormButton.classList.add("btn", "text-danger", "bt-trash");
+    removeFormButton.innerHTML = '<i class="align-middle" data-feather="trash-2">';
 
     item.append(removeFormButton);
 
     removeFormButton.addEventListener('click', (e) => {
         e.preventDefault();
         // remove the li for the tag form
-        item.remove();
+        //On supprime la li parent du button
+        item.parentElement.remove();
+        // item.remove();
     });
 }
 
@@ -30,9 +33,16 @@ const addFormToCollection = (e) => {
         collectionHolder.dataset.index
         );
     // On ajoute un bouton de suppression
-    addImageFormDeleteLink(item);
+    const container = item.querySelector('.img-form-container');
+    addImageFormDeleteLink(container);
+    // On récupère l'input de type type file dans la li afin d'initialiser son écouteur d'evenement
+    const input = item.querySelector('.select-image');
+    // On active l'écouteur d'évènement sur l'input
+    activateSelectImage(input);
     // On ajoute la li au ul
     collectionHolder.appendChild(item);
+    // On active feather pour remplace les balises i par les icones svg
+    feather.replace();
     // On incrémente l'index de la collection (attribut data-index de l'ul)
     collectionHolder.dataset.index++;
 };
@@ -44,7 +54,7 @@ document
 });
 // Mise en plqce des boutons supressions
 document
-    .querySelectorAll('ul.images li')
+    .querySelectorAll('ul.images .img-form-container')
     .forEach((item) => {
         addImageFormDeleteLink(item);
     });

@@ -36,7 +36,9 @@ class ServiceType extends AbstractType
                 "by_reference"=>false, 
                 'allow_delete'=>true, 
                 'label'=>false, 
-                'entry_options'=>['fromBook'=>true]])
+                'entry_options'=>['fromBook'=>true,
+                // 'isNew'=>$options['isNew']
+                ]])
         ;
     }
 
@@ -44,6 +46,7 @@ class ServiceType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Service::class,
+            // 'isNew'=>true,
         ]);
     }
 }
